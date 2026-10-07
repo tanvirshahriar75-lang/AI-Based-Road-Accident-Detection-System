@@ -10,6 +10,7 @@ from ..models.video import Video, VideoStatus
 from ..schemas.video import VideoListResponse, VideoResponse
 from ..services.auth import decode_access_token
 from ..services.video import save_upload
+from ..services.video_processing import VideoProcessingService
 
 router = APIRouter(prefix="/api/v1/videos", tags=["videos"])
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
@@ -65,7 +66,4 @@ def process_video(video_id: int, user: User = Depends(current_user), db: Session
         raise HTTPException(status_code=409, detail="Stored video file is missing")
     if video.status in {VideoStatus.queued, VideoStatus.processing}:
         raise HTTPException(status_code=409, detail="Video is already being processed")
-    video.status = VideoStatus.queued
-    db.commit()
-    db.refresh(video)
-    return video
+    return VideoProcessingService().queue(db, video)
