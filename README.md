@@ -2,7 +2,7 @@
 
 An academic BSc CSE project for detecting potential road accidents from traffic video using computer vision, vehicle tracking, temporal analysis, and an extensible AI pipeline.
 
-> **Current status:** Phase A foundation. No trained accident-detection model or experimental accuracy is claimed yet.
+> **Current status:** Backend foundation through accident-event persistence is implemented. No trained accident-detection model or experimental accuracy is claimed yet.
 
 ## Planned architecture
 
@@ -64,11 +64,8 @@ All model metrics must come from reproducible experiments. Accuracy, precision, 
 - [x] Phase C — video management backend
 - [x] Phase D — vehicle detection
 - [x] Phase E — vehicle tracking
-- [ ] Phase F — accident detection and evidence
-- [ ] Phase G — React dashboard
-- [ ] Phase H — dataset training and evaluation
-- [ ] Phase I — final testing and academic documentation
-- [ ] Phase D — evidence and event persistence
-- [ ] Phase E — React dashboard
-- [ ] Phase F — dataset training and evaluation
-- [ ] Phase G — final testing and academic documentation
+- [x] Phase F — accident detection baseline
+- [x] Phase G — accident event persistence and snapshot storage
+- [ ] Phase H — React dashboard
+- [ ] Phase I — dataset training and evaluation
+- [ ] Phase J — final testing and academic documentation
