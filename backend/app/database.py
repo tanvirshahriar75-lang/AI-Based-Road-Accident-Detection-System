@@ -15,3 +15,6 @@ def get_db():
         yield db
     finally:
         db.close()
+
+# Import models so SQLAlchemy metadata includes all application tables.
+from . import models  # noqa: E402,F401
