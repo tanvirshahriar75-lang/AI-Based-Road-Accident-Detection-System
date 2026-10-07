@@ -60,8 +60,14 @@ All model metrics must come from reproducible experiments. Accuracy, precision, 
 ## Roadmap
 
 - [x] Phase A — project foundation
-- [ ] Phase B — backend APIs and database
-- [ ] Phase C — vehicle detection, tracking, and accident logic
+- [x] Phase B — backend APIs and database
+- [x] Phase C — video management backend
+- [x] Phase D — vehicle detection
+- [x] Phase E — vehicle tracking
+- [ ] Phase F — accident detection and evidence
+- [ ] Phase G — React dashboard
+- [ ] Phase H — dataset training and evaluation
+- [ ] Phase I — final testing and academic documentation
 - [ ] Phase D — evidence and event persistence
 - [ ] Phase E — React dashboard
 - [ ] Phase F — dataset training and evaluation
