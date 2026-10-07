@@ -8,6 +8,8 @@ from ..database import get_db
 from ..models.user import User
 from ..models.video import Video, VideoStatus
 from ..schemas.video import VideoListResponse, VideoResponse
+from ..schemas.accident import AccidentListResponse
+from ..models.accident import Accident
 from ..services.auth import decode_access_token
 from ..services.video import save_upload
 from ..services.video_processing import VideoProcessingService
@@ -67,3 +69,12 @@ def process_video(video_id: int, user: User = Depends(current_user), db: Session
     if video.status in {VideoStatus.queued, VideoStatus.processing}:
         raise HTTPException(status_code=409, detail="Video is already being processed")
     return VideoProcessingService().queue(db, video)
+
+
+@router.get("/{video_id}/accidents", response_model=AccidentListResponse)
+def list_video_accidents(video_id: int, user: User = Depends(current_user), db: Session = Depends(get_db)):
+    video = db.scalar(select(Video).where(Video.id == video_id, Video.owner_id == user.id))
+    if not video:
+        raise HTTPException(status_code=404, detail="Video not found")
+    items = list(db.scalars(select(Accident).where(Accident.video_id == video_id).order_by(Accident.detected_at_seconds.asc(), Accident.id.asc())))
+    return AccidentListResponse(items=items, total=len(items))
