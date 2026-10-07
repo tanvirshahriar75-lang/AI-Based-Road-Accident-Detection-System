@@ -9,6 +9,14 @@ The staged computer-vision pipeline is:
 5. Accident-event confirmation
 6. Evidence generation
 
-Vehicle detection is implemented behind `VehicleDetector` in the backend AI layer. Ultralytics YOLO weights are loaded only when a real model path is configured. Road-relevant classes are filtered to car, motorcycle, bus, truck, and bicycle.
+## Vehicle detection
 
-No model accuracy, mAP, precision, recall, or other performance result is claimed until the project runs a documented evaluation on a real dataset.
+VehicleDetector provides a YOLO boundary. Real model weights are loaded only when a model path is configured. Road-relevant classes are filtered to car, motorcycle, bus, truck, and bicycle.
+
+## Vehicle tracking
+
+VehicleTracker provides an Ultralytics tracking adapter with ByteTrack and BoT-SORT support. Tracking calls use persistent state so track IDs can remain stable across sequential frames. The service also keeps bounded per-vehicle trajectories.
+
+Each TrackState contains track ID, class, confidence, bounding box, center point, frame number, and timestamp. This is the temporal input required by the future accident analyzer.
+
+No tracking accuracy, IDF1, MOTA, FPS, latency, or other performance result is claimed until the project runs a documented evaluation on real video data.
