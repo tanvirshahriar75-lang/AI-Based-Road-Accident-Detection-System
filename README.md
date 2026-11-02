@@ -2,7 +2,7 @@
 
 An academic BSc CSE project for detecting potential road accidents from traffic video using computer vision, vehicle tracking, temporal analysis, and an extensible AI pipeline.
 
-> **Current status:** Backend foundation through accident-event persistence is implemented. No trained accident-detection model or experimental accuracy is claimed yet.
+> **Current status:** Backend APIs and the initial React dashboard are implemented. Video processing is currently queue-only; no trained accident-detection model or experimental accuracy is claimed yet.
 
 ## Planned architecture
 
@@ -45,8 +45,11 @@ API health: `GET /api/health`
 ```bash
 cd frontend
 npm install
+# Optional: set VITE_API_BASE_URL in frontend/.env.local (default: http://localhost:8000)
 npm run dev
 ```
+
+Open the Vite URL (normally `http://localhost:5173`). Register an account, sign in, upload a supported traffic video, and review any accident records returned by the API. The dashboard currently queues processing requests; it does not yet execute the complete video-to-AI pipeline.
 
 ### Docker
 ```bash
@@ -66,6 +69,6 @@ All model metrics must come from reproducible experiments. Accuracy, precision, 
 - [x] Phase E — vehicle tracking
 - [x] Phase F — accident detection baseline
 - [x] Phase G — accident event persistence and snapshot storage
-- [ ] Phase H — React dashboard
+- [x] Phase H — initial React dashboard and API integration
 - [ ] Phase I — dataset training and evaluation
 - [ ] Phase J — final testing and academic documentation
