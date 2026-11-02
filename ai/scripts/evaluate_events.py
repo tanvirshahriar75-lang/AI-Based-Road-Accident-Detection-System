@@ -37,6 +37,11 @@ def evaluate(ground_truth: list[dict[str, Any]], predictions: list[dict[str, Any
             (abs(float(prediction["timestamp_sec"]) - float(ground_truth[i]["timestamp_sec"])), i)
             for i in unmatched
             if ground_truth[i]["video_id"] == prediction["video_id"]
+            and (
+                "event_type" not in prediction
+                or "event_type" not in ground_truth[i]
+                or prediction["event_type"] == ground_truth[i]["event_type"]
+            )
         ]
         if not candidates:
             continue
