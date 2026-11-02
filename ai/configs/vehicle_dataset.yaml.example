@@ -1,0 +1,12 @@
+# Copy this file to your local dataset directory and update the paths.
+# Keep class IDs aligned with the label files.
+path: /absolute/path/to/vehicle_detection
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: car
+  1: motorcycle
+  2: bus
+  3: truck
